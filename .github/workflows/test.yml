@@ -1,4 +1,19 @@
 name: Test
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      # can not use env here
+      - images/spiderpool-base/**
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'sha, Tag'
+        required: true
+        default: v1.0.0
 jobs:
   test:
     strategy:
