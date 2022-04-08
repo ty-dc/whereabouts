@@ -1,4 +1,4 @@
-on: [create,push, pull_request]
+on: [create,push, pull_request,delete]
 name: Test
 jobs:
   test:
