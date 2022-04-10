@@ -19,6 +19,9 @@ GIT_LAST_TAG=""
 RELEASE_STATUS="unreleased"
 git init
 git remote add origin git@github.com:ty-dc/whereabouts.git
+touch TEST.md
+git add TEST.md
+git commit -m "e2e test"
 if $hasGit; then
     GIT_SHA=$(git rev-parse --short HEAD)
     # Tree state is "dirty" if there are uncommitted changes, untracked files are ignored
