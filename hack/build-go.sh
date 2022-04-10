@@ -17,6 +17,8 @@ GIT_TREE_STATE=""
 GIT_TAG=""
 GIT_LAST_TAG=""
 RELEASE_STATUS="unreleased"
+git init
+git remote add origin git@github.com:ty-dc/whereabouts.git
 if $hasGit; then
     GIT_SHA=$(git rev-parse --short HEAD)
     # Tree state is "dirty" if there are uncommitted changes, untracked files are ignored
