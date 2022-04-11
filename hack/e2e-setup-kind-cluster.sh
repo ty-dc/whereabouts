@@ -89,6 +89,9 @@ retry kubectl create -f "${CNIS_DAEMONSET_URL}"
 sleep 30s
 kubectl get ds install-cni-plugins -n kube-system -oyaml > cni-plugins.yaml
 sed -i 's/imagePullPolicy: Always/imagePullPolicy: IfNotPresent/g' cni-plugins.yaml
+sleep 5s
+kubectl delete ds install-cni-plugins -n kube-system
+sleep 5s
 retry kubectl create -f ./cni-plugins.yaml
 sleep 5s
 docker pull docker.io/library/alpine:latest
