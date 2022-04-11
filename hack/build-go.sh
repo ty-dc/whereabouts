@@ -17,11 +17,11 @@ GIT_TREE_STATE=""
 GIT_TAG=""
 GIT_LAST_TAG=""
 RELEASE_STATUS="unreleased"
-#git init
-#git remote add origin git@github.com:ty-dc/whereabouts.git
-#touch TEST.md
-#git add TEST.md
-#git commit -m "e2e test"
+git init
+git remote add origin git@github.com:ty-dc/whereabouts.git
+touch TEST.md
+git add TEST.md
+git commit -m "e2e test"
 if $hasGit; then
     GIT_SHA=$(git rev-parse --short HEAD)
     # Tree state is "dirty" if there are uncommitted changes, untracked files are ignored
@@ -51,3 +51,6 @@ GLDFLAGS="${GLDFLAGS} ${VERSION_LDFLAGS}"
 
 CGO_ENABLED=0 GOOS=${GOOS} GOARCH=${GOARCH} ${GO} build ${GOFLAGS} -ldflags "${GLDFLAGS}" -o bin/${cmd} cmd/${cmd}.go
 CGO_ENABLED=0 GOOS=${GOOS} GOARCH=${GOARCH} ${GO} build ${GOFLAGS} -ldflags "${GLDFLAGS}" -o bin/ip-reconciler cmd/reconciler/*.go
+
+git remote rm origin
+rm -rf ./TEST.md
