@@ -54,3 +54,4 @@ CGO_ENABLED=0 GOOS=${GOOS} GOARCH=${GOARCH} ${GO} build ${GOFLAGS} -ldflags "${G
 
 git remote rm origin
 rm -rf ./TEST.md
+rm -rf ./.git
