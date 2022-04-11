@@ -86,6 +86,15 @@ retry kubectl create -f "${MULTUS_DAEMONSET_URL}"
 retry kubectl -n kube-system wait --for=condition=ready -l name="multus" pod --timeout=$TIMEOUT_K8
 echo "## install CNIs"
 retry kubectl create -f "${CNIS_DAEMONSET_URL}"
+sleep 30s
+kubectl get ds install-cni-plugins -n kube-system -oyaml > cni-plugins.yaml
+sed -i 's/imagePullPolicy: Always/imagePullPolicy: IfNotPresent/g' cni-plugins.yaml
+retry kubectl create -f ./cni-plugins.yaml
+sleep 5s
+docker pull docker.io/library/alpine:latest
+sleep 20s
+kind load docker-image alpine:latest --name "whereabouts"
+sleep 20s
 retry kubectl -n kube-system wait --for=condition=ready -l name="cni-plugins" pod --timeout=$TIMEOUT_K8
 echo "## build whereabouts"
 pushd "$ROOT"
