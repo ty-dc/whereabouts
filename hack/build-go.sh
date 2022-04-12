@@ -22,6 +22,8 @@ git remote add origin git@github.com:ty-dc/whereabouts.git
 touch TEST.md
 git add TEST.md
 git commit -m "e2e test"
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 if $hasGit; then
     GIT_SHA=$(git rev-parse --short HEAD)
     # Tree state is "dirty" if there are uncommitted changes, untracked files are ignored
