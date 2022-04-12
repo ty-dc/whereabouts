@@ -5,6 +5,7 @@ set -o errexit
 here="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")")"
 root="$(readlink --canonicalize "$here/..")"
 VERSION="v0.10.0"
+#KIND_BINARY_URL="https://github.com/kubernetes-sigs/kind/releases/download/${VERSION}/kind-$(uname)-amd64"
 KIND_BINARY_URL="https://github.com/kubernetes-sigs/kind/releases/download/${VERSION}/kind-$(uname)-amd64"
 K8_STABLE_RELEASE_URL="https://storage.googleapis.com/kubernetes-release/release/stable.txt"
 #K8_STABLE_RELEASE_URL="https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
