@@ -5,9 +5,8 @@ set -o errexit
 here="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")")"
 root="$(readlink --canonicalize "$here/..")"
 VERSION="v0.10.0"
-#KIND_BINARY_URL="https://github.com/kubernetes-sigs/kind/releases/download/${VERSION}/kind-$(uname)-amd64"
 KIND_BINARY_URL="https://github.com/kubernetes-sigs/kind/releases/download/${VERSION}/kind-$(uname)-amd64"
-#K8_STABLE_RELEASE_URL="https://storage.googleapis.com/kubernetes-release/release/stable.txt"
+K8_STABLE_RELEASE_URL="https://storage.googleapis.com/kubernetes-release/release/stable.txt"
 #K8_STABLE_RELEASE_URL="https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
 if [ ! -d "${root}/bin" ]; then
@@ -19,8 +18,8 @@ curl --max-time 10 --retry 10 --retry-delay 5 --retry-max-time 60 -Lo "${root}/b
 chmod +x "${root}/bin/kind"
 
 echo "retrieving kubectl"
-# curl -Lo "${root}/bin/kubectl" "https://storage.googleapis.com/kubernetes-release/release/$(curl -s ${K8_STABLE_RELEASE_URL})/bin/linux/amd64/kubectl"
-curl -Lo "${root}/bin/kubectl" "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -Lo "${root}/bin/kubectl" "https://storage.googleapis.com/kubernetes-release/release/$(curl -s ${K8_STABLE_RELEASE_URL})/bin/linux/amd64/kubectl"
+#curl -Lo "${root}/bin/kubectl" "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
 
 chmod +x "${root}/bin/kubectl"
